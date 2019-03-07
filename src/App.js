@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './App.css';
 // import ContactCard from "./ContactCard";
 // import Qustion from './Qustion';
 // import qustionData from './qustionData';
@@ -6,8 +7,11 @@ import React, { Component } from 'react';
 // import productData from './productData';
 import Todo from './Todo';
 import todoData from './todoData';
+//import Conditional from './Conditional';
 
 class App extends Component {
+
+// *******************ToDo App**************
 
   constructor() {
     super();
@@ -31,6 +35,41 @@ class App extends Component {
       }
     });
   }
+  // ******************************************
+
+  /*********Conditional rendering*******
+
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     isLoading: true
+  //   }
+  // }
+
+  // componentDidMount() {
+  //   setTimeout(()=> {
+  //     this.setState({
+  //       isLoading: false
+  //     });
+  //   }, 1500);
+  // }
+  ********************************/
+
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     isLoggedIn: false
+  //   }
+  //   this.handleLogStatus = this.handleLogStatus.bind(this);
+  // }
+
+  // handleLogStatus(){
+  //   this.setState(prevState => {
+  //     return {
+  //       isLoggedIn: !prevState.isLoggedIn
+  //     }
+  //   })
+  // }
 
   render() {
     //const qustionComponent = qustionData.map(data => <Qustion key={data.id} qustion={data.qustion} answer= {data.answer} />)
@@ -40,10 +79,18 @@ class App extends Component {
     //const productComponent = productData.map(items => <Product key= {items.id} product= {items} />);
 
     const todoComponent = this.state.todos.map(items => <Todo key= {items.id} item= {items} handleChange = {this.taskCompleter} />);
+    
+    let buttonText = this.state.isLoggedIn ? "LOG OUT" : "LOG IN";
+    let bodyText = this.state.isLoggedIn ? "logged in" : "logged out"
 
     return (
       <div className="App">
-        {todoComponent}
+        {
+          todoComponent
+
+        /*<button onClick = {this.handleLogStatus} >{buttonText}</button>
+        <h1>{bodyText}</h1>*/
+        }
       </div>
     );
   }
