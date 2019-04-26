@@ -10,31 +10,53 @@ import todoData from './todoData';
 //import Conditional from './Conditional';
 
 class App extends Component {
-
-// *******************ToDo App**************
-
+  //********** fetch data ****************/
   constructor() {
     super();
     this.state = {
-      todos: todoData
+      loadStatus: false,
+      person: {}
     }
-
-    this.taskCompleter = this.taskCompleter.bind(this);
   }
 
-  taskCompleter(id) {
-    this.setState(prevState => {
-      const updatedTodo = prevState.todos.map(todo => {
-        if (todo.id === id) {
-          todo.completed = !todo.completed;
-        }
-        return todo
-      });
-      return {
-        todos: updatedTodo
-      }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState(prevState => prevState.loadStatus = !prevState.loadStatus);
     });
+    fetch("https://swapi.co/api/people/1")
+    .then(response => response.json())
+    .then(data => {
+      this.setState({
+        loadStatus: false,
+        person: data
+      })
+    })
   }
+
+// *******************ToDo App**************
+
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     todos: todoData
+  //   }
+
+  //   this.taskCompleter = this.taskCompleter.bind(this);
+  // }
+
+  // taskCompleter(id) {
+  //   this.setState(prevState => {
+  //     const updatedTodo = prevState.todos.map(todo => {
+  //       if (todo.id === id) {
+  //         todo.completed = !todo.completed;
+  //       }
+  //       return todo
+  //     });
+  //     return {
+  //       todos: updatedTodo
+  //     }
+  //   });
+  // }
   // ******************************************
 
   /*********Conditional rendering*******
@@ -78,15 +100,19 @@ class App extends Component {
     //img= {product.img} name= {product.name} company= {product.company} price= {product.price} description= {product.description}
     //const productComponent = productData.map(items => <Product key= {items.id} product= {items} />);
 
-    const todoComponent = this.state.todos.map(items => <Todo key= {items.id} item= {items} handleChange = {this.taskCompleter} />);
+    // const todoComponent = this.state.todos.map(items => <Todo key= {items.id} item= {items} handleChange = {this.taskCompleter} />);
     
-    let buttonText = this.state.isLoggedIn ? "LOG OUT" : "LOG IN";
-    let bodyText = this.state.isLoggedIn ? "logged in" : "logged out"
+    // let buttonText = this.state.isLoggedIn ? "LOG OUT" : "LOG IN";
+    // let bodyText = this.state.isLoggedIn ? "logged in" : "logged out"
+
+    const text = this.state.loadStatus ? "loading..." : this.state.person.name;
 
     return (
       <div className="App">
         {
-          todoComponent
+        <h3>{text}</h3>
+
+         // todoComponent
 
         /*<button onClick = {this.handleLogStatus} >{buttonText}</button>
         <h1>{bodyText}</h1>*/
