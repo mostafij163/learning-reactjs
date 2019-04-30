@@ -7,3 +7,18 @@
 	padding: 29px 11px 7px;
 	border-bottom: 1px solid #ccc;
 }
+header{
+	background-color: #333;
+	text-align: center;
+	font-size: 30px;
+	padding: 20px 0px;
+	color: #ccc;
+	width: 760px;
+	margin: 0px auto;
+}
+.meme{
+	background-color: #ccc;
+	width: 760px;
+	margin: 0px auto;
+	padding: 30px;
+}

@@ -5,10 +5,12 @@ import './App.css';
 // import qustionData from './qustionData';
 // import Product from './Product';
 // import productData from './productData';
-import Todo from './Todo';
-import todoData from './todoData';
-import { format } from 'path';
+ // import Todo from './Todo';
+ // import todoData from './todoData';
+// import { format } from 'path';
 //import Conditional from './Conditional';
+import FormContainer from './FormContainer';
+import MemeGenerator from './MemeGenerator'
 
 class App extends Component {
 
@@ -61,37 +63,6 @@ class App extends Component {
   // }
   // ******************************************
   
-  //********* form **********/
-  constructor() {
-    super();
-    this.state = {
-      firstname: '',
-      lastname: '',
-      age: null,
-      destination: null,
-      color: '',
-      gender: ''
-    }
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleChange(event) {
-    const {name, type, checked, value} = event.target;
-    type === 'checkbox' ?
-    this.setState(
-      {
-        [name]: checked
-      }
-    ) 
-    : 
-    this.setState({
-      [name]: value
-    });
-  }
-  handleSubmit(event) {
-    alert("Form Submited");
-    event.preventDefault();
-  }
 
   /*********Conditional rendering*******
 
@@ -143,83 +114,11 @@ class App extends Component {
 
     return (
       <div className="App">
-          <form onSubmit = {this.handleSubmit}>
-          <label> First Name
-            <input 
-              type="text"
-              name="firstname"
-              value={this.state.firstname}
-              onChange={this.handleChange}
-            />
-          </label>
-            <label> Last Name
-              <input 
-                type="text"
-                name="lastname"
-                value={this.state.lastname}
-                onChange={this.handleChange}
-              />
-            </label>
-            <label>
-              Age
-              <input 
-                type="number"
-                name="age"
-                value={this.state.age}
-                onChange={this.handleChange}
-              />
-            </label>
-            
-            <label>Destination
-              <input 
-                type="checkbox"
-                name="destination"
-                checked={this.state.destination}
-                onChange={this.handleChange}
-              />
-            </label>
-            <label>Favorite Color
-              <select 
-                value={this.state.color}
-                onChange={this.handleChange}
-                name="color"
-              >
-                <option style={{ backgroundColor: 'blue', padding: '30px' }} value="blue">blue</option>
-                <option style={{ backgroundColor: 'red', padding: '30px' }} value="red">red</option>
-                <option style={{ backgroundColor: 'yellow', padding: '30px' }} value="yellow">yellow</option>
-              </select>
-            </label>
-            <label>Male
-              <input 
-                type="radio"
-                value="male"
-                // checked={this.state.gender === 'male'}
-                name="gender"
-                onChange={this.handleChange}
-              />
-            </label>
-            <label>Female
-              <input 
-                type="radio"
-                value="female"
-                name="gender"
-                // checked={this.state.gender === "female"}
-                onChange={this.handleChange}
-              />
-            </label>
-            <input type="submit" value="Submit"/>
-          </form>
-          <h1>Your Informations</h1>
-          <h3> Name: {this.state.firstname} { this.state.lastname} </h3>
-          <h3> Age: {this.state.age} </h3>
-          <h3>Favorite Color: {this.state.color} </h3>
-          <h3>Destination: {this.state.destination ? `Dhaka` : null} </h3> 
-          <h3>Gender: {this.state.gender} </h3>
+        <MemeGenerator />
+        <FormContainer />
+
       {/*
         //<h3>{text}</h3>
-
-         // todoComponent
-
         <button onClick = {this.handleLogStatus} >{buttonText}</button>
         <h1>{bodyText}</h1> */}
       </div>
